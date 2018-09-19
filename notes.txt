@@ -1,0 +1,103 @@
+////////////////////////////////////////////////////////////////////////////////////////
+// NOTAS
+////////////////////////////////////////////////////////////////////////////////////////
+
+¿Qué deberiamos saber en este moemnto?
+¬ Funcionamiento de las rutas
+¬ Funcionamiento de los controladores
+¬ 
+
+////////////////////////////////////////////////////////////////////////////////////////
+// SEP 10
+////////////////////////////////////////////////////////////////////////////////////////
+
+Clonar repositorio
+
+    $ git clone url.git asistencias
+    $ cd asistencias
+    $ composer install
+    $ cp .env.example .env
+    $ php artisan key:generate
+
+editar .env configurar bd
+
+se descargo el tema de vadi-admin de github y se copio el index.html en tma.blade.php
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+// SEP 12
+////////////////////////////////////////////////////////////////////////////////////////
+
+Modelo vista controlador, foto pintarron
+
+Se creo un modelo y un controlador
+
+    $ php artisan make:model Roles
+    $ php artisan make:controller RoleController --resource --model=Roles
+  
+Se creo una carpeta roles y se escribio en el archivo ""Listado de Roles"
+
+    $ cd resources/views
+    $ mkdir roles
+    $ touch indexRoles.blade.php
+    $ nano indexRoles.blade.php
+
+Agregar la siguiente linea al archivo web.php
+
+    Route::get('/roles', 'RoleController@index');
+    
+Agregar la siguiente linea en el método index de roleController.php
+
+    return view('roles.indexRoles');
+
+////////////////////////////////////////////////////////////////////////////////////////
+// SEP 17
+////////////////////////////////////////////////////////////////////////////////////////
+
+Se creo el controlador materia y se modificó el web.php
+
+Se crearon los archivos indexMateria, formMateria y showMateria, con su respectiva en el web.php
+
+Se ejecutó el comando
+  
+  $php artisan route:list
+  
+Se creó el archivo formEditMateria para editar alguna materia y se crearon las rutas en el web.php,
+vimos como pasar una variable a través de la ruta usando {id}, podemos escribir todo el codigo en el web.php
+pero crearia un codigo muy grande y dificil de mantener, esa es la razón por la que se utilizan los controladores
+
+Se mdofico el archivo web.php para que todas las funciones se hicieran desde el controlador, ahira al volver a 
+ejecutar el comando route:list notamos en la columna action que ya no tenemos "clousure" ahora tenemos la direccion
+al modulo del controlador
+
+Se comentaron las lineas escritas en el archivo web.php para usar
+
+   Route::resource('materia', 'MateriaController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
