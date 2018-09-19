@@ -11,6 +11,17 @@
 |
 */
 
+/*
+Route::get('materia/listado', 'MateriaController@index');
+Route::get('materia/create', 'MateriaController@create');
+Route::post('materia/store', 'MateriaController@store');
+Route::get('materia/show/{id}', 'MateriaController@show');
+Route::get('materia/edit/{id}', 'MateriaController@edit');
+Route::post('materia/update', 'MateriaController@update');
+*/
+Route::get('materia/reporte-pdf', 'MateriaController@reportePdf');
+Route::resource('materia', 'MateriaController');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +29,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/roles', 'RoleController@index');
+
+Route::get('/alumnos', 'AlumnoController@index');
+
+Route::get('/empleados', 'EmpleadoController@index');
+
+Route::get('/dependencias', 'DependenciaController@index');
