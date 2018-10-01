@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('contenido')
 
 <form action="materias/update/{{ $id }}" method ='POST'>
   <label for="materia">Materia:</label>

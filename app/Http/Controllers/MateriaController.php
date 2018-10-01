@@ -14,15 +14,13 @@ class MateriaController extends Controller
      */
     public function reportePdf()
     {
-      // sql query
-      // use pdf lib
-      // return pdf_file
+      dd('llegué al método repotePdf');
     }
   
     public function index()
     {
-      // Consultar tabla materias
-      return view('materias.indexMaterias');
+      $materias = Materia::all();
+      return view('materias.indexMaterias', compact('materias'));
     }
 
     /**
@@ -41,12 +39,16 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
-        //validacion
-        //$materia = $_POST['materia'];
-        //inserta base de datos
-        //redireccionar
+      $materia = new Materia();
+      $materia->materia = $request->input('materia');
+      $materia->seccion = $request->input('seccion');
+      $materia->crn = $request->input('crn');
+      $materia->salon = $request->input('salon');
+      $materia->save();
+      
+      return redirect()->route('materia.index');
     }
 
     /**

@@ -74,12 +74,22 @@ Se comentaron las lineas escritas en el archivo web.php para usar
 
    Route::resource('materia', 'MateriaController');
 
+////////////////////////////////////////////////////////////////////////////////////////
+// SEP 26
+////////////////////////////////////////////////////////////////////////////////////////
 
+Se modificó el archivo fromaMateria.blade
 
+<form action=" action('MateriaController@store') " method ='POST'>
 
+El método action('MateriaController@store') es para poder generar la URL sin depender de la ruta, otra manera es con el
+método route(materia.create)
 
+TAREA PAARA EL LUNES
 
-
+  Hay que jugar con el comando
+    
+    $ php artisan make:model -mcr Alumno
 
 
 
