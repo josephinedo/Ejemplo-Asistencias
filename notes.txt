@@ -75,6 +75,46 @@ Se comentaron las lineas escritas en el archivo web.php para usar
    Route::resource('materia', 'MateriaController');
 
 ////////////////////////////////////////////////////////////////////////////////////////
+// SEP 19
+////////////////////////////////////////////////////////////////////////////////////////
+
+Se creo una cuenta en github y gitlab, en terminaal se realizó lo siguiente:
+
+  $ git init
+  $ git status
+  $ git add .
+  $ git commit -m "Ejemplo asistencias"
+  $ git remote add origin https://github.com/josephinedo/Ejemplo-Asistencias.git
+  $ git push -u origin master
+
+Se agrego el archivo presente notes.txt al directorio asistencias y se hizo el commit
+
+¿Cómo instalar el proyecto en laravel?
+
+  $ git clone https://github.com/josephinedo/Ejemplo-Asistencias.git ejemplo
+  
+ Necesitamos las librerias de laravel, para obtenerlas hacemos:
+ 
+  $ composer install
+  
+ El comando anterior nos generó los archivos que no estaban en el repositorio, ahora debemos
+ modificar el archivo .env y agregar el key
+ 
+  $ php artisan key:generate
+
+Debido a que se esta trabajando en linux, debemos de dar permisos a algunas carpetas, accedemos a:
+
+  https://wpkb.org/install-laravel-5-5-at-codeanywhere-with-php-7-1-and-mysql-5-7/
+  
+y nos ubicamos en la parte de "Set Permissions"
+
+  $ cd ~/workspace/myapp
+  $ sudo chgrp -R www-data storage bootstrap/cache
+  $ sudo chmod -R ug+rwx storage bootstrap/cache
+  
+además se deben de seguir los pasos para configurar apache que estan en el sitio web.
+  
+////////////////////////////////////////////////////////////////////////////////////////
 // SEP 26
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,6 +130,7 @@ TAREA PAARA EL LUNES
   Hay que jugar con el comando
     
     $ php artisan make:model -mcr Alumno
+
 
 
 
