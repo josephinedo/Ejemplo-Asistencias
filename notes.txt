@@ -112,7 +112,18 @@ y nos ubicamos en la parte de "Set Permissions"
   $ sudo chgrp -R www-data storage bootstrap/cache
   $ sudo chmod -R ug+rwx storage bootstrap/cache
   
-además se deben de seguir los pasos para configurar apache que estan en el sitio web.
+además se deben de seguir los pasos para configurar apache, ver el sitio web.
+
+Crear base de datos
+
+  $ mysql -uroot
+  mysql> create database asistencias;
+  mysql> exit
+
+Hacer la migración
+
+  $ php artisan migrate
+
   
 ////////////////////////////////////////////////////////////////////////////////////////
 // SEP 26
@@ -125,11 +136,30 @@ Se modificó el archivo fromaMateria.blade
 El método action('MateriaController@store') es para poder generar la URL sin depender de la ruta, otra manera es con el
 método route(materia.create)
 
-TAREA PAARA EL LUNES
+////////////////////////////////////////////////////////////////////////////////////////
+// TAREA
+////////////////////////////////////////////////////////////////////////////////////////
 
-  Hay que jugar con el comando
-    
-    $ php artisan make:model -mcr Alumno
+Para poder instalar valet en la mac se sigue el procedimiento mostrado en:
+
+  https://laravel.com/docs/5.7/valet
+
+Con lo que se debe tener cuidado es con la instalación de mysql debido a que la versión que
+es compatible con laravel es la 5.7, además se encontraron complicaciones para instalar mysql
+desde brew y se procedio a instalar la versión 5.7 desde el sitio web de mysql, tomando en 
+cuenta los siguientes pasos despues de la instalación:
+
+  1. Agregar la siguiente ruta al PATH
+
+    export PATH=$PATH:/usr/local/mysql/bin
+
+  2. Cambiar la contraseña del usuario root
+
+    mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');
+
+  3. Crear la base de datos y proceder con la migración
+
+
 
 
 

@@ -22,6 +22,8 @@ Route::post('materia/update', 'MateriaController@update');
 Route::get('materia/reporte-pdf', 'MateriaController@reportePdf');
 Route::resource('materia', 'MateriaController');
 
+Route::resource('alumnos', 'AlumnoController');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,8 +33,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/roles', 'RoleController@index');
-
-Route::get('/alumnos', 'AlumnoController@index');
 
 Route::get('/empleados', 'EmpleadoController@index');
 
