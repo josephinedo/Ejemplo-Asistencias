@@ -160,7 +160,45 @@ cuenta los siguientes pasos despues de la instalación:
   3. Crear la base de datos y proceder con la migración
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 3
+////////////////////////////////////////////////////////////////////////////////////////
 
+ - El código se ha movio a gitlab:
+
+    https://gitlab.com/samuelmg/asistencia/tree/ejemplos
+
+    Después de clonar el codigo se debe de instalar la libreria de laravelcollective
+
+    https://laravelcollective.com/docs/master/html
+
+      $ composer require "laravelcollective/html":"^5.4.0"
+
+    En caso de que se obtenga un error se debe ejecutar
+
+      $composer update
+
+ - Validaciones
+ - Muestra de errores en captura
+
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 8
+////////////////////////////////////////////////////////////////////////////////////////
+
+Una vez que hemos temrinado con el CRUD del proyecto, haremos una relación entre modelos, en 
+particular entre el modelo materia y el modelo usuario.
+
+  $ php artisan make:migration --table=materias add_use_id_to_materias
+  $ php artisan migrate
+
+Se crearon las funciones materia en el modelo usuario y la funcion usuario en el 
+modelo materia
+
+Checar la documentacion en laravel Eloquent: Relationships
+
+Se creo el controlador UserController
+
+  $ php artisan make:controller --model=User -r UserController
 
 
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CambiaNamePorNombre extends Migration
+class AddUserIdToMaterias extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CambiaNamePorNombre extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('name', 'nombre');
+        Schema::table('materias', function (Blueprint $table) {
+            //
         });
     }
 
@@ -25,8 +25,8 @@ class CambiaNamePorNombre extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('nombre', 'name');
+        Schema::table('materias', function (Blueprint $table) {
+            //
         });
     }
 }

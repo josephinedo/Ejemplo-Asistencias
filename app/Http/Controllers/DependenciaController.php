@@ -14,7 +14,7 @@ class DependenciaController extends Controller
      */
     public function index()
     {
-         return view('dependencias.indexDependencias');
+         return view('dependencias.dependenciasIndex');
     }
 
     /**

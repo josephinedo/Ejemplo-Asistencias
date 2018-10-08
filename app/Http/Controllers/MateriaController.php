@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class MateriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function reportePdf()
-    {
-      dd('llegué al método repotePdf');
-    }
-  
     public function index()
     {
-      $materias = Materia::all();
-      return view('materias.indexMaterias', compact('materias'));
+        $materias = Materia::all();
+        return view('materias.materiaIndex', compact('materias'));
     }
 
     /**
@@ -30,7 +30,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-      return view('materias.formMateria');
+        return view('materias.materiaForm');
     }
 
     /**
@@ -41,14 +41,30 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-      $materia = new Materia();
-      $materia->materia = $request->input('materia');
-      $materia->seccion = $request->input('seccion');
-      $materia->crn = $request->input('crn');
-      $materia->salon = $request->input('salon');
-      $materia->save();
+        $request->validate([
+          'materia' => 'required|min:5',
+          'seccion' => 'required|max:5',
+          'crn' => 'required|integer',
+          'salon' => 'required'
+        ]);
+
+        /*
+        $materia = new Materia();
+        $materia->user_id = \Auth::id();
+        $materia->materia = $request->input('materia');
+        $materia->seccion = $request->input('seccion');
+        $materia->crn = $request->crn;
+        $materia->salon = $request->salon;
+        $materia->save();
+        */
+
+        //Agrega 'user_id' al request para que se inserte a la base de datos
+        $request->merge(['user_id' => \Auth::id()]);
+
+        //Debe estar $fillable o $guarded declarados en el Modelo
+        Materia::create($request->all());
       
-      return redirect()->route('materia.index');
+        return redirect()->route('materia.index');
     }
 
     /**
@@ -57,11 +73,10 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Materia $materium)
     {
-      // EL signo de interrogacion en id es para tener la opcion de no escribir nada en la ruta
-      // Buscar materia con el id
-      return view('materias.showMateria', compact('id'));
+        //Pasa la información en la variable $materium como $materia a la vista
+        return view('materias.materiaShow')->with(['materia' => $materium]);
     }
 
     /**
@@ -70,10 +85,9 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Materia $materium)
     {
-      // Consultar materia con id
-      return view('materias.formEditMateria', compact('id'));
+        return view('materias.materiaForm')->with(['materia' => $materium]);
     }
 
     /**
@@ -83,12 +97,25 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materia $materia)
+    public function update(Request $request, Materia $materium)
     {
-      //validacion
-      //$materia = $_POST['materia'];
-      //actualizar base de datos
-      //redireccionar /show/materia/id
+        $request->validate([
+          'materia' => 'required|min:5',
+          'seccion' => 'required|max:5',
+          'crn' => 'required|integer',
+          'salon' => 'required'
+        ]);
+
+      /*
+        $materium->materia = $request->materia;
+        $materium->crn = $request->crn;
+        $materium->salon = $request->salon;
+        $materium->seccion = $request->input('seccion');
+        $materium->save();
+      */
+        Materia::where('id', $materium->id)->update($request->except('_token', '_method'));
+      
+        return redirect()->route('materia.show', $materium->id);
     }
 
     /**
@@ -97,8 +124,9 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materia $materia)
+    public function destroy(Materia $materium)
     {
-        //
+        $materium->delete();
+        return redirect()->route('materia.index');
     }
 }
