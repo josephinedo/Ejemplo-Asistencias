@@ -24,7 +24,7 @@ Route::post('materia/update', 'MateriaController@update');
 Route::get('materia/reporte-pdf', 'MateriaController@reportePdf');
 
 Route::resource('materia', 'MateriaController');
-Route::resource('alumnos', 'AlumnoController');
+Route::resource('alumno', 'AlumnoController');
 Route::resource('user', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('empleados', 'EmpleadoController');
@@ -34,6 +34,10 @@ Route::resource('dependencias', 'DependenciaController');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

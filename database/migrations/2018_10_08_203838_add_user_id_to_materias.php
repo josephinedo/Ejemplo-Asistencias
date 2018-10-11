@@ -14,7 +14,7 @@ class AddUserIdToMaterias extends Migration
     public function up()
     {
         Schema::table('materias', function (Blueprint $table) {
-            //
+            $table->unsignedInteger('user_id')->after('id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddUserIdToMaterias extends Migration
     public function down()
     {
         Schema::table('materias', function (Blueprint $table) {
-            //
+            $table->dropColumn('user_id');
         });
     }
 }

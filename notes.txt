@@ -164,7 +164,7 @@ cuenta los siguientes pasos despues de la instalación:
 // OCT 3
 ////////////////////////////////////////////////////////////////////////////////////////
 
- - El código se ha movio a gitlab:
+ - El código de clase se ha movido a gitlab:
 
     https://gitlab.com/samuelmg/asistencia/tree/ejemplos
 
@@ -178,7 +178,14 @@ cuenta los siguientes pasos despues de la instalación:
 
       $composer update
 
- - Validaciones
+ - Autenticaciones
+
+ Surgio un problema con las autenticaciones debido a un cambio de nombre en la base de 
+ datos, se procedió a modificar 'nombre' por 'name' en la migracion de la tabla usuarios
+ y a correr el siguiente comando:
+
+  $ php artisan migrate:refresh
+
  - Muestra de errores en captura
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -200,6 +207,23 @@ Se creo el controlador UserController
 
   $ php artisan make:controller --model=User -r UserController
 
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 10
+////////////////////////////////////////////////////////////////////////////////////////
+
+Hemos utilizado otro metodo para hacer la relacion entre modelos usando el método save, dentro de
+la funcion store de MateriaController
+
+  https://laravel.com/docs/5.7/eloquent-relationships
+
+Crearemos una relacion de muchos a muchos entre el modelo Alumno y Materia
+
+  $ php artisan make:migration --create=alumno_materia alumno_materia_table
+  $ php artisan migrate
+  $ php artisan make:controller --parent=Alumno --model=Materia -r AlumnoMateriaController
+
+Se han escrito la funcion alumnos en el modelo materia y la funcion materias en el modelo 
+Alumnos
 
 
 
