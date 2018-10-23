@@ -25,6 +25,7 @@ Route::get('materia/reporte-pdf', 'MateriaController@reportePdf');
 
 Route::resource('materia', 'MateriaController');
 Route::resource('alumno', 'AlumnoController');
+Route::resource('alumno.materia', 'AlumnoMateriaController');
 Route::resource('user', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('empleados', 'EmpleadoController');

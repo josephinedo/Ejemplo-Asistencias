@@ -4,7 +4,7 @@
 <div class="app-title">
     <div>
         <h1><i class="fa fa-dashboard"></i> Información de Materia</h1>
-        <p>--nombre materia--</p>
+        <p>-- {{ $materia->materia }} --</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -38,7 +38,6 @@
                             <td>{{ $materia->seccion }}</td>
                             <td>{{ $materia->crn }}</td>
                             <td>{{ $materia->salon }}</td>
-                            <td>{{-- $materia->calendario --}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -5,7 +5,7 @@
 ¿Qué deberiamos saber en este moemnto?
 ¬ Funcionamiento de las rutas
 ¬ Funcionamiento de los controladores
-¬ 
+¬ Instalacion del tema "Vali boostrap"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // SEP 10
@@ -56,19 +56,21 @@ Agregar la siguiente linea en el método index de roleController.php
 
 Se creo el controlador materia y se modificó el web.php
 
-Se crearon los archivos indexMateria, formMateria y showMateria, con su respectiva en el web.php
+Se crearon los archivos indexMateria, formMateria y showMateria, con su respectiva en el 
+web.php
 
 Se ejecutó el comando
   
   $php artisan route:list
   
-Se creó el archivo formEditMateria para editar alguna materia y se crearon las rutas en el web.php,
-vimos como pasar una variable a través de la ruta usando {id}, podemos escribir todo el codigo en el web.php
-pero crearia un codigo muy grande y dificil de mantener, esa es la razón por la que se utilizan los controladores
+Se creó el archivo formEditMateria para editar alguna materia y se crearon las rutas en el 
+web.php, vimos como pasar una variable a través de la ruta usando {id}, podemos escribir todo 
+el codigo en el web.php pero crearia un codigo muy grande y dificil de mantener, esa es la 
+razón por la que se utilizan los controladores
 
-Se mdofico el archivo web.php para que todas las funciones se hicieran desde el controlador, ahira al volver a 
-ejecutar el comando route:list notamos en la columna action que ya no tenemos "clousure" ahora tenemos la direccion
-al modulo del controlador
+Se mdofico el archivo web.php para que todas las funciones se hicieran desde el controlador, 
+ahora al volver a ejecutar el comando route:list notamos en la columna action que ya no 
+tenemos "clousure" ahora tenemos la direccion al modulo del controlador
 
 Se comentaron las lineas escritas en el archivo web.php para usar
 
@@ -102,7 +104,8 @@ Se agrego el archivo presente notes.txt al directorio asistencias y se hizo el c
  
   $ php artisan key:generate
 
-Debido a que se esta trabajando en linux, debemos de dar permisos a algunas carpetas, accedemos a:
+Debido a que se esta trabajando en linux, debemos de dar permisos a algunas carpetas, 
+accedemos a:
 
   https://wpkb.org/install-laravel-5-5-at-codeanywhere-with-php-7-1-and-mysql-5-7/
   
@@ -166,7 +169,7 @@ cuenta los siguientes pasos despues de la instalación:
 
  - El código de clase se ha movido a gitlab:
 
-    https://gitlab.com/samuelmg/asistencia/tree/ejemplos
+    º
 
     Después de clonar el codigo se debe de instalar la libreria de laravelcollective
 
@@ -211,8 +214,8 @@ Se creo el controlador UserController
 // OCT 10
 ////////////////////////////////////////////////////////////////////////////////////////
 
-Hemos utilizado otro metodo para hacer la relacion entre modelos usando el método save, dentro de
-la funcion store de MateriaController
+Hemos utilizado otro metodo para hacer la relacion entre modelos usando el método save, 
+dentro de la funcion store de MateriaController
 
   https://laravel.com/docs/5.7/eloquent-relationships
 
@@ -225,13 +228,39 @@ Crearemos una relacion de muchos a muchos entre el modelo Alumno y Materia
 Se han escrito la funcion alumnos en el modelo materia y la funcion materias en el modelo 
 Alumnos
 
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 15
+////////////////////////////////////////////////////////////////////////////////////////
+
+Se creo la relacion de muchos a muchos entre el modelo alumno y materia, ademas se agrego
+un formulario en alumnoShow para ligar alguna materia a algun alumno
+
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 17
+////////////////////////////////////////////////////////////////////////////////////////
+ 
+ ¬ Se creo el boton para borrar alguna materia para el alumno
+ ¬ Tarea
+
+ Cuando se modifique algun dato a la base de datos lo mejor es hacer
+
+    $ php artisan migrate:rollback
+    $ php artisan migrate
+
+  La otra alternativa es hacer
+
+    $ php artisan migrate:refresh
+
+  Pero esto elimiaria todos los datos en la BD.
 
 
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 22
+////////////////////////////////////////////////////////////////////////////////////////
+ 
+Vimos varias caracteristicas:
+ ¬ SoftDeletes
+ ¬ 
 
 
 

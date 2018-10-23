@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Materia;
+use App\Alumno;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ class MateriaController extends Controller
           'salon' => 'required'
         ]);
 
-        /*
+        
         $materia = new Materia();
         $materia->user_id = \Auth::id();
         $materia->materia = $request->input('materia');
@@ -57,13 +58,24 @@ class MateriaController extends Controller
         $materia->crn = $request->crn;
         $materia->salon = $request->salon;
         $materia->save();
-        */
+        
+
+        // Guardar con relación user utiilzando el método save
+        //$materia = new Materia($request->all());
+
+        // Obtenemos instancia modelo
+        //$user = User::find(\Auth::id());
+
+        //$user->materia()->save($materia);
+
+        // Problema com el metodo save  "Method Illuminate\Database\Query\Builder::materia does not exist"
+
 
         //Agrega 'user_id' al request para que se inserte a la base de datos
-        $request->merge(['user_id' => \Auth::id()]);
+        //$request->merge(['user_id' => \Auth::id()]);
 
         //Debe estar $fillable o $guarded declarados en el Modelo
-        Materia::create($request->all());
+        //Materia::create($request->all());
       
         return redirect()->route('materia.index');
     }
@@ -77,7 +89,8 @@ class MateriaController extends Controller
     public function show(Materia $materium)
     {
         //Pasa la información en la variable $materium como $materia a la vista
-        return view('materias.materiaShow')->with(['materia' => $materium]);
+        $alumnos = Alumno::all();
+        return view('materias.materiaShow')->with(['materia' => $materium, 'alumnos' => $alumnos]);
     }
 
     /**

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Alumnos;
+use App\Alumno;
+use App\Materia;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -14,8 +15,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumnos::all();
-        return view('alumnos.alumnosIndex', compact('alumnos'));
+        $alumnos = Alumno::all();
+        return view('alumnos.alumnoIndex', compact('alumnos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('alumnos.alumnosForm');
+        return view('alumnos.alumnoForm');
     }
 
     /**
@@ -36,13 +37,16 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        $alumno = new Alumnos();
+        /*
+        $alumno = new Alumno();
         $alumno->nombre = $request->input('nombre');
         $alumno->codigo = $request->input('codigo');
         $alumno->carrera = $request->input('carrera');
         $alumno->save();
-          
-        return redirect()->route('alumnos.index');
+        */
+
+        Alumno::create($request->all());
+        return redirect()->route('alumno.index');
     }
 
     /**
@@ -51,9 +55,10 @@ class AlumnoController extends Controller
      * @param  \App\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function show(Alumnos $alumnos)
+    public function show(Alumno $alumno)
     {
-        return view('alumnos.alumnosShow', compact('id'));
+        $materias = Materia::all();
+        return view('alumnos.alumnoShow')->with(['materias'=>$materias, 'alumnos'=>$alumno]);
     }
 
     /**
@@ -62,9 +67,9 @@ class AlumnoController extends Controller
      * @param  \App\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alumnos $alumnos)
+    public function edit(Alumno $alumno)
     {
-        return view('alumnos.alumnosFormEdit', compact('id'));
+        return view('alumnos.alumnoForm')->with(['alumno' => $alumno]);
     }
 
     /**
@@ -74,9 +79,11 @@ class AlumnoController extends Controller
      * @param  \App\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumnos $alumnos)
+    public function update(Request $request, Alumno $alumno)
     {
-        //
+        Alumno::where('id', $alumno->id)->update($request->except('_token', '_method'));
+      
+        return redirect()->route('alumno.show', $alumno->id);
     }
 
     /**
@@ -85,8 +92,9 @@ class AlumnoController extends Controller
      * @param  \App\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumnos $alumnos)
+    public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        return redirect()->route('alumno.index');
     }
 }

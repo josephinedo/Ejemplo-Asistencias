@@ -3,7 +3,7 @@
 @section('contenido')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Nueva Materias</h1>
+        <h1><i class="fa fa-dashboard"></i> Nueva Materia</h1>
         <p>Subtítulo</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
