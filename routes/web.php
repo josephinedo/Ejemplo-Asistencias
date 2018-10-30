@@ -31,6 +31,7 @@ Route::resource('roles', 'RoleController');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('dependencias', 'DependenciaController');
 
+Route::post('materia/agrega-alumno', 'MateriaController@agregaAlumno')->name('materia.agrega-alumno');
 
 Route::get('/', function () {
     return view('welcome');

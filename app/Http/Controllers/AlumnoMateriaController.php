@@ -39,6 +39,7 @@ class AlumnoMateriaController extends Controller
      */
     public function store(Request $request, Alumno $alumno)
     {
+        //dd('Alumno:',$alumno->id,'Materia:',$request->materias);
         $alumno->materias()->attach($request->materias);
         return redirect()->route('alumno.show',$alumno->id);
     }

@@ -260,7 +260,19 @@ un formulario en alumnoShow para ligar alguna materia a algun alumno
  
 Vimos varias caracteristicas:
  ¬ SoftDeletes
- ¬ 
+
+////////////////////////////////////////////////////////////////////////////////////////
+// OCT 29
+////////////////////////////////////////////////////////////////////////////////////////
+
+Pendientes:
+  * Instalar GitKraken en la mac
+
+Temas:
+  * Seeders
+  * Factories
+    - Librería Faker
+    - 
 
 
 

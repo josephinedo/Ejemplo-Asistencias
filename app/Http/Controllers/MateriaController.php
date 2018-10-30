@@ -143,4 +143,11 @@ class MateriaController extends Controller
         $materium->delete();
         return redirect()->route('materia.index');
     }
+
+    public function agregaAlumno(Request $request)
+    {
+        $materia = Materia::find($request->materia);
+        $materia->alumnos()->attach($request->alumno);
+        return redirect()->route('materia.show', $materia->id);
+    }
 }

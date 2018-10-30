@@ -4,7 +4,7 @@
 <div class="app-title">
     <div>
         <h1><i class="fa fa-dashboard"></i> Información de Materia</h1>
-        <p>-- {{ $materia->materia }} --</p>
+        <p>{{ $materia->materia }}</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -14,7 +14,7 @@
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card card-shadow mb-4">
             <div class="card-header border-0">
                 <div class="custom-title-wrap bar-primary">
@@ -29,7 +29,6 @@
                         <th>Sección</th>
                         <th>CRN</th>
                         <th>Salón</th>
-                        <th>Calendario</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -54,5 +53,35 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="card-body">
+            {!! Form::open(['route'=>[ 'materia.agrega-alumno']]) !!}
+            {!! Form::label('alumno')!!}
+            <input type="hidden" value="{{ $materia->id }}" name="materia">
+            <select name="alumno" class="form-control">
+                @foreach($alumnos as $alu)
+                    <option value="{{ $alu->id }}">{{ $alu->nombre }}</option>
+                @endforeach
+            </select>
+            {!! Form::submit("Aceptar",['class' => "btn btn-sm btn-primary"]) !!}
+            {!! Form::close() !!}
+            <hr>
+            <ul>
+                @foreach ($materia->alumnos as $alu)
+                    <li> 
+                        {{ $alu->nombre }}
+                    </li>
+                    <form action="{{ route( 'alumno.materia.destroy', [ 'alumno' => $alu, 'materium' => $materia] ) }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Eliminar"></input>
+                    </form>
+                @endforeach
+            </ul>
+
+        </div>
+    </div>
+
 </div>
 @endsection
